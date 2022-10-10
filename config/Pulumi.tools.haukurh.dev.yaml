@@ -1,0 +1,4 @@
+config:
+  project:domain: tools.haukurh.dev
+  project:tags:
+    Author: haukur
