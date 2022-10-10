@@ -1,4 +1,4 @@
-# S3 bucket, static website, behind CloudFront
+# AWS S3 static websites behind CloudFront
 
 A Pulumi project for setting up and configuring a S3 bucket (static website hosting) behind CloudFront with a custom 
 domain name.
@@ -13,7 +13,7 @@ Set the necessary config
 
 ```shell
 pulumi config set --path project:domain <value>
-pulumi config set --path project:tags.Author "${USER}@stefna.is"
+pulumi config set --path project:tags.Author "${USER}"
 ```
 
 Config example:
@@ -23,7 +23,7 @@ config:
   aws:region: eu-west-1
   project:domain: example.haukurh.dev
   project:tags:
-    Author: haukurh@users.noreply.github.com
+    Author: haukurh
 ```
 
 ## Output
