@@ -32,7 +32,7 @@ config:
 We're going to need the output from the setup in order to configure our CI/CD automation. 
 
 ```shell
-pulumi stack output
+pulumi stack output --show-secrets
 ```
 
 ## Create a new stack
