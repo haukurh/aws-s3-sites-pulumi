@@ -13,7 +13,7 @@ const createCertificate = (
     });
 
     // Create an ACM certificate
-    const certificate = new aws.acm.Certificate('aws-acm-certificate', {
+    const certificate = new aws.acm.Certificate(config.domain, {
         domainName: config.domain,
         validationMethod: 'DNS',
         tags: config.tags,
