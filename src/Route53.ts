@@ -22,7 +22,7 @@ export const createDomain = (
 ): aws.route53.Record => {
 
     // Create a DNS record which points the domain to the CloudFront instance
-    return new aws.route53.Record(`aws-route53-record-${config.domain}`, {
+    return new aws.route53.Record(config.domain, {
         name: config.domain,
         type: 'A',
         zoneId: dnsZone.then(x => x.zoneId),

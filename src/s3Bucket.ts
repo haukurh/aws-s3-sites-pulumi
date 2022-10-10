@@ -13,7 +13,7 @@ const createS3Bucket = (
 ): s3Bucket => {
 
     // Create the AWS S3 bucket
-    const bucket = new aws.s3.Bucket(`aws-s3-bucket-${config.domain}`, {
+    const bucket = new aws.s3.Bucket(config.domain, {
         acl: "public-read",
         website: {
             indexDocument: "index.html",
@@ -22,7 +22,7 @@ const createS3Bucket = (
     });
 
     // Restrict access to S3 static website unless correct value is given HTTP referer header
-    const policy = new aws.s3.BucketPolicy(`aws-s3-bucket-${config.domain}-referer-policy`, {
+    const policy = new aws.s3.BucketPolicy(`aws-referer-policy`, {
         bucket: bucket.id,
         policy: {
             Version: '2008-10-17',

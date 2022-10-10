@@ -15,18 +15,18 @@ const createIamUser = (
 ): User => {
 
     // Create AWS IAM user for CI/CD automation
-    const user = new aws.iam.User(`aws-iam-automation-user`, {
+    const user = new aws.iam.User(`${config.domain}`, {
         path: '/system/',
         tags: config.tags,
     });
 
     // Issue programmatic access key
-    const accessKey = new aws.iam.AccessKey('aws-iam-automation-user-access-key', {
+    const accessKey = new aws.iam.AccessKey(`${config.domain}-access-key`, {
         user: user.name,
     });
 
     // User policy which gives access to the S3 bucket
-    const s3Policy = new aws.iam.UserPolicy('aws-iam-automation-user-policy-to-s3-bucket', {
+    const s3Policy = new aws.iam.UserPolicy('s3-bucket-policy', {
         user: user.name,
         policy: {
             Version: '2012-10-17',
@@ -50,7 +50,7 @@ const createIamUser = (
     });
 
     // User policy which allows CloudFront invalidation requests
-    const cloudfrontPolicy = new aws.iam.UserPolicy('aws-iam-automation-user-policy-cloudfront-invalidation', {
+    const cloudfrontPolicy = new aws.iam.UserPolicy('cloudfront-invalidation-policy', {
         user: user.name,
         policy: {
             Version: '2012-10-17',

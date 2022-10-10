@@ -61,7 +61,7 @@ const createDistribution = (
     };
 
     // Create a CloudFront distribution
-    return new aws.cloudfront.Distribution(`aws-cloudfront-distribution-${config.domain}`, distributionArgs);
+    return new aws.cloudfront.Distribution(config.domain, distributionArgs);
 };
 
 export default createDistribution;
