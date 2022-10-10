@@ -1,0 +1,4 @@
+name: aws-s3-sites-pulumi
+description: Pulumi project to setup AWS S3 static websites behind AWS CloudFront
+runtime: nodejs
+stackConfigDir: config
