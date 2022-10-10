@@ -12,7 +12,7 @@ Everything use the scope/key `project`
 Set the necessary config
 
 ```shell
-pulumi config set --path aws:region: eu-west-1
+pulumi config set --path aws:region eu-west-1
 pulumi config set --path project:domain <value>
 pulumi config set --path project:tags.Author "${USER}"
 ```
@@ -24,7 +24,7 @@ config:
   aws:region: eu-west-1
   project:domain: example.haukurh.dev
   project:tags:
-    Author: haukurh
+    Author: haukur
 ```
 
 ## Output
