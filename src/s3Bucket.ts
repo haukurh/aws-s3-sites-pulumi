@@ -14,16 +14,21 @@ const createS3Bucket = (
 
     // Create the AWS S3 bucket
     const bucket = new aws.s3.Bucket(config.domain, {
-        acl: "public-read",
         bucket: config.domain,
         website: {
-            indexDocument: "index.html",
+            indexDocument: 'index.html',
         },
         tags: config.tags,
     });
 
+    new aws.s3.BucketPublicAccessBlock('s3-PublicAccessBlock', {
+        bucket: bucket.id,
+        blockPublicAcls: false,
+
+    });
+
     // Restrict access to S3 static website unless correct value is given HTTP referer header
-    const policy = new aws.s3.BucketPolicy(`aws-referer-policy`, {
+    const policy = new aws.s3.BucketPolicy('aws-referer-policy', {
         bucket: bucket.id,
         policy: {
             Version: '2008-10-17',
