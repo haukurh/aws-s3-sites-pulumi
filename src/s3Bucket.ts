@@ -15,6 +15,7 @@ const createS3Bucket = (
     // Create the AWS S3 bucket
     const bucket = new aws.s3.Bucket(config.domain, {
         acl: "public-read",
+        bucket: config.domain,
         website: {
             indexDocument: "index.html",
         },
