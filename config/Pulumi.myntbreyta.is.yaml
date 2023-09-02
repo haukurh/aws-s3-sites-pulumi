@@ -1,0 +1,5 @@
+config:
+  aws:region: eu-west-1
+  project:domain: myntbreyta.is
+  project:tags:
+    Author: haukur
