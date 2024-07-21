@@ -17,6 +17,7 @@ const createS3Bucket = (
         bucket: config.domain,
         website: {
             indexDocument: 'index.html',
+            errorDocument: 'error.html',
         },
         tags: config.tags,
     });
