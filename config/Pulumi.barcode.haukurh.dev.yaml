@@ -1,0 +1,5 @@
+config:
+  aws:region: eu-west-1
+  project:domain: barcode.haukurh.dev
+  project:tags:
+    Author: haukur
