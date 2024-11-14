@@ -1,5 +1,8 @@
 {
     "name": "aws-s3-sites-pulumi",
+    "scripts": {
+        "format": "prettier -w index.ts src"
+    },
     "devDependencies": {
         "@types/node": "^14",
         "prettier": "^3.3.3"
