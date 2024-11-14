@@ -58,6 +58,11 @@ const createDistribution = (
             minimumProtocolVersion: 'TLSv1.2_2021',
             sslSupportMethod: 'sni-only',
         },
+        loggingConfig: {
+            bucket: 'haukurh-logs',
+            prefix: `cf/${config.domain}`,
+            includeCookies: false,
+        },
     };
 
     // Create a CloudFront distribution
