@@ -59,8 +59,8 @@ const createDistribution = (
             sslSupportMethod: 'sni-only',
         },
         loggingConfig: {
-            bucket: 'haukurh-logs',
-            prefix: `cf/${config.domain}`,
+            bucket: 'haukurh-logs.s3.amazonaws.com',
+            prefix: `cf/${config.domain}/`,
             includeCookies: false,
         },
     };
