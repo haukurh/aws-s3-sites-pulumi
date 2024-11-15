@@ -20,6 +20,7 @@ const createDistribution = (
       cachePolicyId: config.cloudfrontCachePolicyId,
     },
     enabled: true,
+    httpVersion: 'http2and3',
     isIpv6Enabled: true,
     aliases: [config.domain],
     origins: [
