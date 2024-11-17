@@ -16,6 +16,14 @@ const createS3Bucket = (config: ConfigInterface): s3Bucket => {
       indexDocument: 'index.html',
       errorDocument: 'error.html',
     },
+    serverSideEncryptionConfiguration: {
+      rule: {
+        applyServerSideEncryptionByDefault: {
+          sseAlgorithm: 'AES256',
+        },
+        bucketKeyEnabled: false,
+      },
+    },
     tags: config.tags,
   });
 
