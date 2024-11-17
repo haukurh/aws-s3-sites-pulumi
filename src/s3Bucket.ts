@@ -16,6 +16,14 @@ const createS3Bucket = (config: ConfigInterface): s3Bucket => {
       indexDocument: 'index.html',
       errorDocument: 'error.html',
     },
+    corsRules: [
+      {
+        allowedHeaders: ['*'],
+        allowedMethods: ['GET', 'HEAD'],
+        allowedOrigins: [config.domain],
+        maxAgeSeconds: 30,
+      },
+    ],
     serverSideEncryptionConfiguration: {
       rule: {
         applyServerSideEncryptionByDefault: {
