@@ -18,6 +18,7 @@ const createDistribution = (
       viewerProtocolPolicy: 'redirect-to-https',
       compress: true,
       cachePolicyId: config.cloudfrontCachePolicyId,
+      responseHeadersPolicyId: config.cloudfrontResponsePolicyId,
     },
     enabled: true,
     httpVersion: 'http2and3',
