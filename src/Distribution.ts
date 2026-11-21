@@ -50,7 +50,7 @@ const createDistribution = (
     viewerCertificate: {
       acmCertificateArn: acmArn,
       cloudfrontDefaultCertificate: false,
-      minimumProtocolVersion: 'TLSv1.3_2025',
+      minimumProtocolVersion: 'TLSv1.2_2021',
       sslSupportMethod: 'sni-only',
     },
     loggingConfig: {
