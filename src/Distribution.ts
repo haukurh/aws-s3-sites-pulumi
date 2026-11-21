@@ -22,7 +22,7 @@ const createDistribution = (
     },
     enabled: true,
     httpVersion: 'http2and3',
-    isIpv6Enabled: true,
+    isIpv6Enabled: false,
     aliases: [config.domain],
     origins: [
       {
