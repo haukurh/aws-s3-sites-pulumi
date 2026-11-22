@@ -4,10 +4,22 @@ import { ConfigInterface } from './Config';
 
 const createDistribution = (
   config: ConfigInterface,
-  originDomainName: pulumi.Output<string>,
+  bucket: aws.s3.Bucket,
   acmArn: pulumi.Output<string>,
 ): aws.cloudfront.Distribution => {
-  // CloudFront distribution settings
+  const oac = new aws.cloudfront.OriginAccessControl(config.domain, {
+    name: config.domain,
+    description: `OAC for CloudFront to access S3 bucket ${config.domain}`,
+    originAccessControlOriginType: 's3',
+    signingBehavior: 'always',
+    signingProtocol: 'sigv4',
+  });
+  const originDomainName = pulumi
+    .all([bucket.id, bucket.region])
+    .apply(
+      ([bucketId, bucketRegion]) =>
+        `${bucketId}.s3-website-${bucketRegion}.amazonaws.com`,
+    );
   const distributionArgs: aws.cloudfront.DistributionArgs = {
     comment: config.domain,
     tags: config.tags,
@@ -24,21 +36,30 @@ const createDistribution = (
     httpVersion: 'http2and3',
     isIpv6Enabled: false,
     aliases: [config.domain],
+    defaultRootObject: 'index.html',
+    customErrorResponses: [
+      {
+        errorCode: 403,
+        errorCachingMinTtl: 10,
+        responseCode: 404,
+        responsePagePath: '/error.html',
+      },
+      {
+        errorCode: 404,
+        errorCachingMinTtl: 10,
+        responseCode: 404,
+        responsePagePath: '/error.html',
+      },
+    ],
+    staging: false,
     origins: [
       {
-        domainName: originDomainName,
         originId: config.domain,
-        customHeaders: [
-          {
-            name: 'Referer',
-            value: config.cloudfrontReferer,
-          },
-        ],
-        customOriginConfig: {
-          httpPort: 80,
-          httpsPort: 443,
-          originProtocolPolicy: 'http-only',
-          originSslProtocols: ['SSLv3'],
+        domainName: bucket.bucketRegionalDomainName,
+        originAccessControlId: oac.id,
+
+        s3OriginConfig: {
+          originAccessIdentity: '',
         },
       },
     ],
